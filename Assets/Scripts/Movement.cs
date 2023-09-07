@@ -1,11 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    
-    [SerializeField] float mainThrust = 1000f;
+    public static Movement Instance;
+    public Joystick joystick;
+
+    [SerializeField] float mainThrust = 500f;
     [SerializeField] float rotationThrust = 100f;
     [SerializeField] AudioClip engineThrust;
 
@@ -15,6 +17,13 @@ public class Movement : MonoBehaviour
 
     Rigidbody rb;
     AudioSource audioSource;
+    public bool isThrusting = false;
+
+    private void Awake()
+    {
+        if(Instance == null)
+            Instance = this;
+    }
 
     void Start()
     {
@@ -22,15 +31,9 @@ public class Movement : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        ProcessThrust();
-        ProcessRotation();
-    }
-
-    void ProcessThrust()
-    {
-        if (Input.GetKey(KeyCode.Space))
+        if (isThrusting)
         {
             StartThrusting();
         }
@@ -38,11 +41,13 @@ public class Movement : MonoBehaviour
         {
             StopThrusting();
         }
+        ProcessRotation();
     }
 
-    void StartThrusting()
+
+    public void StartThrusting()
     {
-        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.fixedDeltaTime);
 
         if (!audioSource.isPlaying)
         {
@@ -52,22 +57,28 @@ public class Movement : MonoBehaviour
         {
             mainEngingeParticles.Play();
         }
+        isThrusting = true;
     }
-    
-    private void StopThrusting()
+
+    public void StopThrusting()
     {
         audioSource.Stop();
         mainEngingeParticles.Stop();
+        isThrusting = false;
     }
 
     void ProcessRotation()
     {
-        if (Input.GetKey(KeyCode.A))
+
+        float rotationInput = joystick.Horizontal; // Use joystick's horizontal input for rotation
+
+        // Rotate left when joystick is moved left
+        if (rotationInput < -0.2f)
         {
             RotateLeft();
         }
-
-        else if (Input.GetKey(KeyCode.D))
+        // Rotate right when joystick is moved right
+        else if (rotationInput > 0.2f)
         {
             RotateRight();
         }
@@ -75,7 +86,6 @@ public class Movement : MonoBehaviour
         {
             StopRotating();
         }
-
     }
 
     private void RotateRight()
@@ -96,7 +106,7 @@ public class Movement : MonoBehaviour
         }
     }
     
-        private void StopRotating()
+    private void StopRotating()
     {
         rightThrusterParticles.Stop();
         leftThrusterParticles.Stop();
@@ -105,7 +115,7 @@ public class Movement : MonoBehaviour
     void ApplyRotation(float rotationThisFrame)
     {
         rb.freezeRotation = true; // freezing rotation so we can manually rotate
-        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
+        transform.Rotate(Vector3.forward * rotationThisFrame * Time.fixedDeltaTime);
         rb.freezeRotation = false; // unfreezing rotation so the physics system take over
     }
 }
