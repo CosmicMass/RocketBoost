@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1109
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 16
+  controlID: 24
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -613,9 +613,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -126.18576, y: -82.144775, z: 91.46876}
+    m_Target: {x: -7.448303, y: -25.282925, z: 119.00012}
     speed: 2
-    m_Value: {x: -126.18576, y: -82.144775, z: 91.46876}
+    m_Value: {x: -7.448303, y: -25.282925, z: 119.00012}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -662,9 +662,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.23255858, y: 0.40005514, z: -0.105693705, w: -0.88018954}
+    m_Target: {x: -0.17153272, y: -0.06880621, z: 0.012014452, w: -0.98271626}
     speed: 2
-    m_Value: {x: -0.23255858, y: 0.40005514, z: -0.10569371, w: -0.88018954}
+    m_Value: {x: -0.17153272, y: -0.06880621, z: 0.012014452, w: -0.98271626}
   m_Size:
     m_Target: 102.53552
     speed: 2
@@ -734,21 +734,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 65
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: 65
   m_LastProjectPath: C:\Users\Aslan Mo\Documents\GitHub\RocketBoost
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 221}
-    m_SelectedIDs: 3c630000
-    m_LastClickedID: 25404
+    scrollPos: {x: 0, y: 357}
+    m_SelectedIDs: 3e630000
+    m_LastClickedID: 25406
     m_ExpandedIDs: 00000000f8600000fa600000fc600000fe60000000610000026100000461000006610000086100000a6100000c6100000e610000106100001261000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0

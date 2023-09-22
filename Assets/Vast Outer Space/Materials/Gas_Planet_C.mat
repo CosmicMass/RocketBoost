@@ -25,7 +25,8 @@ Material:
   m_ValidKeywords:
   - _EMISSION
   - _OCCLUSIONMAP
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _HALFTONESHAPE_DOT
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
