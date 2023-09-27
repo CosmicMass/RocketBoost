@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
-    [SerializeField] float levelLoadDelay = 2f;
+    [SerializeField] float levelLoadDelay = 0.5f;
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip crash;
 
@@ -20,22 +20,22 @@ public class CollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
     
-    void Update()
-    {
-        RespondToDebugKeys();
-    }
+    //void Update()
+    //{
+    //    RespondToDebugKeys();
+    //}
 
-    void RespondToDebugKeys()
-    {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            LoadNextLevel();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            collisionDisabled = !collisionDisabled; // toggle collision
-        }
-    }
+    //void RespondToDebugKeys()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        LoadNextLevel();
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.C))
+    //    {
+    //        collisionDisabled = !collisionDisabled; // toggle collision
+    //    }
+    //}
     void OnCollisionEnter(Collision other)
     {
         if (isTransitioining || collisionDisabled)
@@ -62,7 +62,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(success);
         successParticles.Play();
-        GetComponent<Movement>().enabled = false;
+        Movement.Instance.enabled = false;
+        //GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
 
     }
@@ -73,7 +74,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
         crashParticles.Play();
-        GetComponent<Movement>().enabled = false;
+        Movement.Instance.enabled = false;
+        //GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
     void LoadNextLevel()

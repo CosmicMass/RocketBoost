@@ -10,10 +10,8 @@ public class ObstacleOsc : MonoBehaviour
     void Start()
     {
         //DOTween.Init();
-        transform.DOMove(desiredPosition, cycleLength).SetLoops(-1,LoopType.Yoyo).SetEase(easeType);
+        transform.DOMove(desiredPosition, cycleLength).SetLoops(-1, LoopType.Yoyo).SetEase(easeType);
         transform.DOLocalRotate(new Vector3(0, 360, 0), cycleLength, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
         //transform.DOScaleX(2, 1).SetEase(easeType).SetLoops(-1, LoopType.Yoyo);
     }
-
-
 }
