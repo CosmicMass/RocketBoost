@@ -677,7 +677,6 @@ GameObject:
   - component: {fileID: 583627843785220464}
   - component: {fileID: 1610728027}
   - component: {fileID: 1610728025}
-  - component: {fileID: 1610728030}
   - component: {fileID: 1610728037}
   m_Layer: 0
   m_Name: AtomRocket
@@ -879,29 +878,6 @@ MonoBehaviour:
   crash: {fileID: 8300000, guid: 0255816a18e05e644ac1d2f84ec2fb32, type: 3}
   successParticles: {fileID: 198631065055929669}
   crashParticles: {fileID: 198204746439822938}
---- !u!136 &1610728030
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8854619882081110099}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1610728037
 MonoBehaviour:
   m_ObjectHideFlags: 0

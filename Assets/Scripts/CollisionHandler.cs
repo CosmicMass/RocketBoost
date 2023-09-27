@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 0.5f;
@@ -14,6 +15,8 @@ public class CollisionHandler : MonoBehaviour
 
     bool isTransitioining = false;
     bool collisionDisabled = false;
+
+    public CinemachineVirtualCamera virtualCamera;
 
     void Start()
     {
@@ -63,9 +66,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.PlayOneShot(success);
         successParticles.Play();
         Movement.Instance.enabled = false;
-        //GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
-
+        
     }
 
     void StartCrashSequence()
@@ -75,8 +77,10 @@ public class CollisionHandler : MonoBehaviour
         audioSource.PlayOneShot(crash);
         crashParticles.Play();
         Movement.Instance.enabled = false;
-        //GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
+        virtualCamera.enabled = false;
+        //CinemachineTransposer transposer = virtualCamera.AddCinemachineComponent<CinemachineTransposer>();
+        //transposer.enabled = false;
     }
     void LoadNextLevel()
     {
