@@ -23,22 +23,6 @@ public class CollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
     
-    //void Update()
-    //{
-    //    RespondToDebugKeys();
-    //}
-
-    //void RespondToDebugKeys()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.L))
-    //    {
-    //        LoadNextLevel();
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.C))
-    //    {
-    //        collisionDisabled = !collisionDisabled; // toggle collision
-    //    }
-    //}
     void OnCollisionEnter(Collision other)
     {
         if (isTransitioining || collisionDisabled)
@@ -52,6 +36,9 @@ public class CollisionHandler : MonoBehaviour
                 break;
             case "Finish":
                 StartSuccessSequence();
+                break;
+            case "Fuel":
+                Debug.Log("You picked up fuel!");
                 break;
             default:
                 StartCrashSequence();
