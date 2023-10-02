@@ -8,19 +8,20 @@ public class Movement : MonoBehaviour
 
     [SerializeField] float mainThrust = 500f;
     [SerializeField] float rotationThrust = 100f;
-    [SerializeField] AudioClip engineThrust;
 
     [SerializeField] ParticleSystem mainEngingeParticles;
     [SerializeField] ParticleSystem leftThrusterParticles;
     [SerializeField] ParticleSystem rightThrusterParticles;
 
     Rigidbody rb;
-    AudioSource audioSource;
+
     public bool isThrusting = false;
 
     public float maxFuel = 100f;
     public float currentFuel;
     public Image FuelFill;
+
+    bool isClick = false;
 
     private void Awake()
     {
@@ -31,7 +32,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
         currentFuel = maxFuel;
     }
 
@@ -62,10 +62,12 @@ public class Movement : MonoBehaviour
             // Apply thrust
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.fixedDeltaTime);
 
-            if (!audioSource.isPlaying)
+            if (isClick == false)
             {
-                audioSource.PlayOneShot(engineThrust);
+                AudioManager.Instance.EngineThrustPlay();
+                isClick = true;
             }
+            
             if (!mainEngingeParticles.isPlaying)
             {
                 mainEngingeParticles.Play();
@@ -74,15 +76,16 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            // Out of fuel, handle as needed (e.g., stop thrusting or trigger a game over).
+            StopThrusting();
         }
     }
 
     public void StopThrusting()
     {
-        audioSource.Stop();
+        isThrusting = false; // Update the thrusting flag
+        AudioManager.Instance.ThrustStop();
         mainEngingeParticles.Stop();
-        isThrusting = false;
+        isClick = false; 
     }
 
     void ProcessRotation()

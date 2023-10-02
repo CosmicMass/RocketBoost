@@ -1,6 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FuelPickup : MonoBehaviour
@@ -19,6 +17,8 @@ public class FuelPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.CollectPlay();
+
             // Add fuel to the player's currentFuel
             Movement.Instance.currentFuel += fuelAmount;
 
@@ -28,8 +28,7 @@ public class FuelPickup : MonoBehaviour
             // Update the fuel bar UI
             Movement.Instance.UpdateFuelBar();
 
-            // Destroy the fuel pickup object
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

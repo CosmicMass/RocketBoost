@@ -1,28 +1,26 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 public class CollisionHandler : MonoBehaviour
 {
+    public static CollisionHandler Instance;
+
     [SerializeField] float levelLoadDelay = 0.5f;
-    [SerializeField] AudioClip success;
-    [SerializeField] AudioClip crash;
 
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
-
-    AudioSource audioSource;
 
     bool isTransitioining = false;
     bool collisionDisabled = false;
 
     public CinemachineVirtualCamera virtualCamera;
 
-    void Start()
+    private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        if (Instance == null)
+            Instance = this;
     }
-    
+
     void OnCollisionEnter(Collision other)
     {
         if (isTransitioining || collisionDisabled)
@@ -37,9 +35,6 @@ public class CollisionHandler : MonoBehaviour
             case "Finish":
                 StartSuccessSequence();
                 break;
-            case "Fuel":
-                Debug.Log("You picked up fuel!");
-                break;
             default:
                 StartCrashSequence();
                 break;                        
@@ -49,8 +44,7 @@ public class CollisionHandler : MonoBehaviour
     void StartSuccessSequence()
     {
         isTransitioining = true;
-        audioSource.Stop();
-        audioSource.PlayOneShot(success);
+        AudioManager.Instance.SuccessPlay();
         successParticles.Play();
         Movement.Instance.enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
@@ -60,14 +54,11 @@ public class CollisionHandler : MonoBehaviour
     void StartCrashSequence()
     {
         isTransitioining = true;
-        audioSource.Stop();
-        audioSource.PlayOneShot(crash);
+        AudioManager.Instance.CrashPlay();
         crashParticles.Play();
         Movement.Instance.enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
         virtualCamera.enabled = false;
-        //CinemachineTransposer transposer = virtualCamera.AddCinemachineComponent<CinemachineTransposer>();
-        //transposer.enabled = false;
     }
     void LoadNextLevel()
     {
