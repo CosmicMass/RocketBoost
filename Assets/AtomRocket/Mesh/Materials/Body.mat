@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -115,7 +115,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _AlphaToMask: 0
     - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _BottomLine: 1
     - _BrushLowerCut: 0
     - _BrushSize: 1.343
     - _BumpScale: 1
@@ -129,11 +132,13 @@ Material:
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _EnabledHairSpec: 0
     - _EnvironmentReflections: 1
     - _FaceShadowMapEnabled: 0
     - _FaceShadowMapPow: 0.2
     - _FaceShadowSmoothness: 0.1
+    - _FresnelPower: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.957
     - _GlossyReflections: 1
@@ -156,23 +161,25 @@ Material:
     - _HatchingEnabled: 0
     - _HatchingRotation: 0
     - _HatchingSmoothness: 0.1
-    - _Metallic: 0.262
+    - _Metallic: 0.04
     - _Mode: 0
-    - _NoiseScale: 1
+    - _NoiseScale: 4530.68
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
     - _OutlineEnabled: 1
     - _OutlineMode: 0
     - _OutlineWidth: 0
     - _Parallax: 0.02
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 0
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
+    - _ScrollSpeed: 0.003
     - _SizeFalloff: 0.507
-    - _Smoothness: 0.803
+    - _Smoothness: 0.636
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
     - _SpecShadowStrength: 1
@@ -182,31 +189,37 @@ Material:
     - _SpecularSize: 1
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _StencilComp: 0
     - _StencilRef: 0
     - _StepViaRampTexture: 0
     - _Surface: 0
     - _ToonBlending: 1
     - _ToonEnabled: 1
+    - _TopLine: 1
     - _UVSec: 0
     - _UseRampColor: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.4431373, g: 0.20392159, b: 0.98823535, a: 1}
-    - _Color: {r: 0.4431373, g: 0.20392159, b: 0.98823535, a: 1}
+    - _BaseColor: {r: 0.9433962, g: 0.048949808, b: 0.048949808, a: 1}
+    - _BottomColor: {r: 2.9960785, g: 2.5024254, b: 0, a: 1}
+    - _Color: {r: 0.9433962, g: 0.048949808, b: 0.048949808, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
+    - _InnerColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OuterColor: {r: 6.9279523, g: 4.566688, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineDistancFade: {r: 4.213484, g: 79.2135, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}
+    - _TopColor: {r: 2.297397, g: 1.7991444, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6169692901384875899
 MonoBehaviour:

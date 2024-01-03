@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using UnityEngine.UI;
+
 public class CollisionHandler : MonoBehaviour
 {
     public static CollisionHandler Instance;
@@ -14,6 +16,8 @@ public class CollisionHandler : MonoBehaviour
     bool collisionDisabled = false;
 
     public CinemachineVirtualCamera virtualCamera;
+
+    
 
     private void Awake()
     {
@@ -51,14 +55,17 @@ public class CollisionHandler : MonoBehaviour
         
     }
 
-    void StartCrashSequence()
+    public void StartCrashSequence()
     {
         isTransitioining = true;
         AudioManager.Instance.CrashPlay();
         crashParticles.Play();
         Movement.Instance.enabled = false;
-        Invoke("ReloadLevel", levelLoadDelay);
+        //Invoke("ReloadLevel", levelLoadDelay);
         virtualCamera.enabled = false;
+        PlayerManager.isGameOver = true;
+        AudioManager.Instance.ThrustStop();
+
     }
     void LoadNextLevel()
     {
@@ -72,7 +79,7 @@ public class CollisionHandler : MonoBehaviour
         SceneManager.LoadScene(nextSceneIndex);
     }
 
-    void ReloadLevel()
+    public void ReloadLevel()
     {
         int currentSceneIndex = (SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(currentSceneIndex);
